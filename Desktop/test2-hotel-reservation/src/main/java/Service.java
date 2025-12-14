@@ -9,8 +9,7 @@ public class Service {
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Booking> bookings = new ArrayList<>();
 
-    // CREATE OR UPDATE ROOM
-    
+    // Create or update room
     public void setRoom(int roomNumber, RoomType roomType, int pricePerNight) {
         for (Room r : rooms) {
             if (r.getRoomNumber() == roomNumber) {
@@ -22,8 +21,7 @@ public class Service {
         rooms.add(new Room(roomNumber, roomType, pricePerNight));
     }
 
-    // CREATE OR UPDATE USER
-
+    // Create or update user
     public void setUser(int userId, int balance) {
         for (User u : users) {
             if (u.getUserId() == userId) {
@@ -34,8 +32,7 @@ public class Service {
         users.add(new User(userId, balance));
     }
 
-    // BOOK ROOM
-
+    // Booking logic
     public void bookRoom(int userId, int roomNumber, Date checkIn, Date checkOut) {
 
         if (checkIn.after(checkOut)) {
@@ -69,9 +66,9 @@ public class Service {
 
         for (Booking b : bookings) {
             boolean overlap =
-                    roomNumber == b.getRoomNumber() &&
-                    checkIn.before(b.getCheckOut()) &&
-                    checkOut.after(b.getCheckIn());
+                    roomNumber == b.getRoomNumber()
+                            && checkIn.before(b.getCheckOut())
+                            && checkOut.after(b.getCheckIn());
 
             if (overlap) {
                 System.out.println("Room is already booked.");
@@ -102,9 +99,7 @@ public class Service {
         System.out.println("Booking successful.");
     }
 
-
-    // PRINT ALL ROOMS + BOOKINGS
-
+    // Print rooms and bookings
     public void printAll() {
 
         System.out.println("\n--- Rooms (latest first) ---");
@@ -118,8 +113,7 @@ public class Service {
         }
     }
 
-    // PRINT ALL USERS
- 
+    // Print users
     public void printAllUsers() {
         System.out.println("\n--- Users (latest first) ---");
         for (int i = users.size() - 1; i >= 0; i--) {
